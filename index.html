@@ -19,21 +19,22 @@
       padding: 30px;
       box-sizing: border-box;
     }
-    h2 {
-      margin-top: 0;
+    #header {
+      background-color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    #header h2 {
+      margin: 0;
       font-size: 50px;
       font-weight: 600;
-      text-align: center;
-      margin-bottom: 20px;
-      width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      color: #333;
+      line-height: 1.2;
     }
     ol {
       list-style: none;
       padding: 0;
-      margin: 0;
+      margin: 20px 0 0 0;
       font-size: 26px;
     }
     li {
@@ -42,9 +43,15 @@
       padding: 10px 0;
       border-bottom: 1px solid #eee;
     }
+    li.highlight {
+      background-color: #F1B50E;
+      border-radius: 6px;
+      font-weight: bold;
+    }
     .rank {
       font-weight: 600;
       width: 40px;
+      padding-left: 12px;
     }
     .name {
       flex: 1;
@@ -53,12 +60,15 @@
     .score {
       width: 60px;
       text-align: right;
+      padding-right: 12px;
     }
   </style>
 </head>
 <body>
   <div id="sideBanner">
-    <h2>TMTA SASR Leaderboard</h2>
+    <div id="header">
+      <h2>TMTA Sight-Reading<br>Leaderboard</h2>
+    </div>
     <ol id="scoreList">
       <li><span class="rank">1.</span><span class="name">Loading...</span><span class="score"></span></li>
     </ol>
@@ -82,7 +92,7 @@
 
         list.innerHTML = topTen
           .map((score, index) =>
-            `<li><span class="rank">${index + 1}.</span><span class="name">${score.Name}</span><span class="score">${score.Score}</span></li>`
+            `<li class="${index === 0 ? 'highlight' : ''}"><span class="rank">${index + 1}.</span><span class="name">${score.Name}</span><span class="score">${score.Score}</span></li>`
           )
           .join('');
       } catch (err) {
